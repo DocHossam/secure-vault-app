@@ -16,14 +16,15 @@ subprojects {
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
 
-// Apply this after each Android library plugin has completed its own DSL
-// configuration. Some Flutter plugins declare compileSdk 34 internally even
-// though their transitive AndroidX dependencies now require API 36.
+// Some Flutter Android plugins declare compileSdk 34, while their resolved
+// AndroidX dependencies require API 36. Use the Android Components DSL
+// finalizeDsl hook: it runs after each library's build script has configured
+// its DSL, but before AGP locks the values for variant/task creation.
 subprojects {
     plugins.withId("com.android.library") {
-        afterEvaluate {
-            extensions.configure<com.android.build.api.dsl.LibraryExtension> {
-                compileSdk = 36
+        extensions.configure<com.android.build.api.variant.LibraryAndroidComponentsExtension> {
+            finalizeDsl { libraryExtension ->
+                libraryExtension.compileSdk = 36
             }
         }
     }
