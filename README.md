@@ -104,3 +104,8 @@ secure_vault_app/
 
 **تنبيه مهم:** التطبيق يسجل المواعيد ويرسل تذكيرات فقط. لا يستطيع إلغاء الاشتراك لدى مقدم الخدمة أو منع البنك من تنفيذ الخصم تلقائيًا؛ يجب إلغاء التجديد من الخدمة نفسها أو التواصل مع البنك عند الحاجة. لا تدخل رقم البطاقة كاملًا أو تاريخ الانتهاء أو CVV.
 
+
+
+### Android build compatibility
+
+The Android app and Flutter plugin library modules compile against Android API 36. The library compile SDK is finalized through the Android Components `finalizeDsl` lifecycle hook so it is set before Gradle locks the DSL for variant creation.
