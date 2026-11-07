@@ -1,0 +1,46 @@
+name: secure_vault_app
+description: "A 100% offline, locally-encrypted vault for API keys, credit cards, secure notes, and media attachments with one-tap copy."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  provider: ^6.1.2
+
+  # Local Encrypted Storage & Database
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^9.2.2
+  path_provider: ^2.1.4
+
+  # Encryption & Security
+  crypto: ^3.0.3
+  encrypt: ^5.0.3
+
+  # Biometrics & Hardware
+  local_auth: ^2.3.0
+
+  # Media & File Handling
+  image_picker: ^1.1.2
+  file_picker: ^8.1.4
+  share_plus: ^10.1.2
+
+  # Utilities
+  path: ^1.9.0
+  intl: ^0.19.0
+  uuid: ^4.5.1
+  flutter_animate: ^4.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
