@@ -16,13 +16,15 @@ subprojects {
     project.layout.buildDirectory.value(newSubprojectBuildDir)
 }
 
-// Keep Flutter plugin Android library modules aligned with the app compile SDK.
-// This prevents AAR metadata checks from failing when a plugin's dependencies
-// require a newer compile SDK than the plugin's own default.
+// Apply this after each Android library plugin has completed its own DSL
+// configuration. Some Flutter plugins declare compileSdk 34 internally even
+// though their transitive AndroidX dependencies now require API 36.
 subprojects {
     plugins.withId("com.android.library") {
-        extensions.configure<com.android.build.api.dsl.LibraryExtension> {
-            compileSdk = 36
+        afterEvaluate {
+            extensions.configure<com.android.build.api.dsl.LibraryExtension> {
+                compileSdk = 36
+            }
         }
     }
 }

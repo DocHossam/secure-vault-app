@@ -10,6 +10,7 @@ import '../widgets/vault_item_card.dart';
 import 'add_edit_item_screen.dart';
 import 'lock_screen.dart';
 import 'settings_screen.dart';
+import 'subscription_tracker_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -92,6 +93,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _openSettings() => Navigator.push(context, MaterialPageRoute(builder: (_) => const SettingsScreen()));
 
+  void _openSubscriptions() => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => SubscriptionTrackerScreen(isArabic: _isArabic),
+        ),
+      );
+
   Widget _statCard(String label, String value, IconData icon, Color tint) {
     return Expanded(
       child: Container(
@@ -124,6 +132,44 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w700)),
             ]),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _subscriptionShortcut(VaultStrings s) {
+    return Material(
+      color: VaultTheme.surface,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        onTap: _openSubscriptions,
+        borderRadius: BorderRadius.circular(18),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+          child: Row(children: [
+            Container(
+              width: 42,
+              height: 42,
+              decoration: BoxDecoration(
+                color: VaultTheme.primary.withOpacity(.12),
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: const Icon(Icons.calendar_month_rounded, color: VaultTheme.primary),
+            ),
+            const SizedBox(width: 12),
+            Expanded(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(s.isArabic ? 'متابع الاشتراكات' : 'Subscription Tracker', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800)),
+                const SizedBox(height: 3),
+                Text(
+                  s.isArabic ? 'تابع التجديدات قبل خصم الفيزا' : 'Stay ahead of renewals and card charges',
+                  style: const TextStyle(fontSize: 10, color: VaultTheme.textSecondary),
+                ),
+              ],
+            )),
+            const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: VaultTheme.textMuted),
+          ]),
         ),
       ),
     );
@@ -182,6 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(width: 8),
               _shortcut(s.backup, Icons.backup_rounded, const Color(0xFFFBBF24), _openSettings),
             ]),
+            const SizedBox(height: 10),
+            _subscriptionShortcut(s),
           ]),
         ),
         Padding(
