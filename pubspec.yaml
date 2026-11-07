@@ -4,7 +4,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.13.0 <4.0.0'
+  flutter: '>=3.47.0'
 
 dependencies:
   flutter:
@@ -19,16 +20,16 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   path_provider: ^2.1.4
 
-  # Encryption & Security
+  # Encryption
   crypto: ^3.0.3
   encrypt: ^5.0.3
 
-  # Biometrics & Hardware
+  # Biometrics
   local_auth: ^2.3.0
 
   # Media & File Handling
   image_picker: ^1.1.2
-  file_picker: ^8.1.4
+  file_picker: ^10.3.10
   share_plus: ^10.1.2
 
   # Utilities
