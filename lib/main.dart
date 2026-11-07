@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'providers/subscription_provider.dart';
 import 'providers/vault_provider.dart';
 import 'screens/lock_screen.dart';
 import 'services/storage_service.dart';
+import 'services/subscription_notification_service.dart';
 import 'utils/theme.dart';
 
 void main() async {
@@ -19,8 +21,9 @@ void main() async {
     ),
   );
 
-  // Initialize offline Hive storage
+  // Initialize offline Hive storage and local subscription notifications.
   await StorageService.instance.init();
+  await SubscriptionNotificationService.instance.initialize();
 
   runApp(const SecureVaultApp());
 }
@@ -33,6 +36,7 @@ class SecureVaultApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => VaultProvider()),
+        ChangeNotifierProvider(create: (_) => SubscriptionProvider()),
       ],
       child: MaterialApp(
         title: 'Secure Vault',

@@ -31,6 +31,11 @@ dependencies:
   file_picker: ^8.1.4
   share_plus: ^10.1.2
 
+  # Subscription reminders
+  flutter_local_notifications: ^19.5.0
+  flutter_timezone: ^5.1.1
+  timezone: ^0.10.1
+
   # Utilities
   path: ^1.9.0
   intl: ^0.19.0
