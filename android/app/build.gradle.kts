@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.secure_vault_app"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
