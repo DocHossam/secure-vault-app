@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -760,7 +762,7 @@ class _SubscriptionTrackerScreenState extends State<SubscriptionTrackerScreen> {
     final dueSoon = provider.upcomingSubscriptions.length;
 
     return Directionality(
-      textDirection: _isArabic ? TextDirection.rtl : TextDirection.ltr,
+      textDirection: _isArabic ? ui.TextDirection.rtl : ui.TextDirection.ltr,
       child: Scaffold(
         appBar: AppBar(
           title: Text(_t('Subscription Tracker', 'متابع الاشتراكات')),
